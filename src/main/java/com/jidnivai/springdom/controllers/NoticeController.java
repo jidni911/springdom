@@ -9,8 +9,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.jidnivai.springdom.entity.Notice;
+import com.jidnivai.springdom.entity.Task;
 import com.jidnivai.springdom.security.services.UserDetailsImpl;
 import com.jidnivai.springdom.service.NoticeService;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+
 
 @RestController
 @RequestMapping("/api/notice")
@@ -31,4 +35,18 @@ public class NoticeController {
             return null;
         }
     }
+
+     @PostMapping
+    public Notice create(
+        @RequestBody Notice entity,
+        @AuthenticationPrincipal UserDetailsImpl user
+    ) {
+        try {
+            return noticeService.createNotice(entity, user.getUser());
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return null;
+        }
+    }
+    
 }

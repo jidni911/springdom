@@ -7,6 +7,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.jidnivai.springdom.entity.Notice;
+import com.jidnivai.springdom.entity.Task;
 import com.jidnivai.springdom.entity.User;
 import com.jidnivai.springdom.repository.NoticeRepository;
 
@@ -19,6 +20,11 @@ public class NoticeService {
     public Page<Notice> getNotices(int page, int size, User user) {
         Pageable pageable = PageRequest.of(page, size);
         return noticeRepository.findAll(pageable);
+    }
+
+    public Notice createNotice(Notice entity, User user) {
+        entity.setNotifier(user);
+        return noticeRepository.save(entity);   
     }
 
 }
