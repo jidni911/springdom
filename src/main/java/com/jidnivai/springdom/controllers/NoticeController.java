@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.jidnivai.springdom.entity.Notice;
-import com.jidnivai.springdom.entity.Task;
 import com.jidnivai.springdom.security.services.UserDetailsImpl;
 import com.jidnivai.springdom.service.NoticeService;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -36,7 +35,7 @@ public class NoticeController {
         }
     }
 
-     @PostMapping
+    @PostMapping
     public Notice create(
         @RequestBody Notice entity,
         @AuthenticationPrincipal UserDetailsImpl user
