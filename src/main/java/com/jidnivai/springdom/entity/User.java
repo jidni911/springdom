@@ -2,6 +2,8 @@ package com.jidnivai.springdom.entity;
 
 import java.util.Set;
 
+// import org.springframework.data.mongodb.core.mapping.Document;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.CascadeType;
@@ -20,6 +22,7 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
+// @Document
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

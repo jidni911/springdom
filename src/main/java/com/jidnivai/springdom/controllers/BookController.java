@@ -12,6 +12,9 @@ import org.springframework.data.domain.Page;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+
 
 
 @RestController
@@ -33,5 +36,18 @@ public class BookController {
             return null;
         }
     }
+
+    @PostMapping
+    public Book createBook(@RequestBody Book entity, @AuthenticationPrincipal UserDetailsImpl user) {
+      
+        try {
+            return bookService.createBook(entity, user.getUser());
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return null;
+        }
+        
+    }
+    
     
 }

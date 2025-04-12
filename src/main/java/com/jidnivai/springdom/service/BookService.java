@@ -21,4 +21,10 @@ public class BookService {
         // System.out.println(books);
         return books;
     }
+
+    public Book createBook(Book entity, User user) {
+        //Todo add validation
+        return bookRepository.save(entity);
+
+    }
 }
