@@ -7,7 +7,6 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.jidnivai.springdom.entity.Notice;
-import com.jidnivai.springdom.entity.Task;
 import com.jidnivai.springdom.entity.User;
 import com.jidnivai.springdom.repository.NoticeRepository;
 
