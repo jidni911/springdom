@@ -1,38 +1,52 @@
 package com.jidnivai.springdom.entity;
 
-import java.time.LocalDateTime;
-
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.PrePersist;
-import jakarta.persistence.PreUpdate;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
+
+import java.time.LocalDateTime;
+
+import com.jidnivai.springdom.enums.RequestStatus;
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.PrePersist;
+import jakarta.persistence.PreUpdate;
+import jakarta.persistence.Transient;
 
 @Getter
 @Setter
 @ToString
 @Entity
-public class Book {
+public class BookRequests {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private String title;
-    private String author;
-    private String isbn;
-    private String publisher;
-    private LocalDateTime publishedDate;
-    private String category;
-    private String language;
-    private Integer totalCopies;
-    private Integer availableCopies;
-    private String shelfLocation;
+    
+    @ManyToOne
+    private Student student;
+    @ManyToOne
+    private Book book;
+    private LocalDateTime issueDate;
+    private LocalDateTime dueDate;
+    private LocalDateTime returnDate;
+    @Enumerated(EnumType.STRING)
+    private RequestStatus status;
+    private Double fineAmount;
+
+    @Transient
+    private Long userId;
+
+    @Transient
+    private Long bookId;
+
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
-    private String imageUrl;
 
     @PrePersist
     public void prePersist() {
@@ -45,4 +59,3 @@ public class Book {
         updatedAt = LocalDateTime.now();
     }
 }
-
