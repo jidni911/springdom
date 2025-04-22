@@ -52,7 +52,7 @@ public class BookService {
             book.setAvailableCopies(book.getAvailableCopies() - 1);
             bookRepository.save(book);
             BookRequests bookRequest = new BookRequests();
-            bookRequest.setUser(user);
+            bookRequest.setStudent(student);
             bookRequest.setBook(book);
             bookRequest.setStatus(RequestStatus.REQUESTED);
             bookRequestRepository.save(bookRequest);
